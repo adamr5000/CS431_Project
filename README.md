@@ -6,8 +6,9 @@
 - [Sai](https://github.com/somsai002)
 
 # Setup
-Visual Studio
-Postgres?
+
+- Visual Studio
+- Postgres?
 
 	git clone
 	Open project in visual studio
