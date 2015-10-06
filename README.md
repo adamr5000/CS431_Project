@@ -9,11 +9,12 @@
 
 - Visual Studio
 - Postgres?
-
+```
 	git clone
 	Open project in visual studio
 	Build (may have to press twice to let NuGet download packages)
 	Run
+```
 
 # Docs
 [Nancy docs](https://github.com/NancyFx/Nancy/wiki/Documentation)
