@@ -6,10 +6,11 @@
 - [Sai](https://github.com/somsai002)
 
 # Setup
-Visual Studio
-Postgres - use a password of 'password' when you install (or set up a .config file so we can all have whatever password we want)
-[pgcli](http://pgcli.com/) - helpful for working with Postgres
-[PostgreSQL Command Line Cheat Sheet](https://gist.github.com/jmeridth/f2ad6b580ae18501c538#file-postgresql_command_line_cheat_sheet-md)
+
+- Visual Studio
+- Postgres - use a password of 'password' when you install (or set up a .config file so we can all have whatever password we want)
+- [pgcli](http://pgcli.com/) - helpful for working with Postgres
+- [PostgreSQL Command Line Cheat Sheet](https://gist.github.com/jmeridth/f2ad6b580ae18501c538#file-postgresql_command_line_cheat_sheet-md)
 
 ```
 	git clone
