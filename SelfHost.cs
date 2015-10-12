@@ -6,6 +6,7 @@ using Nancy;
 using Nancy.Bootstrapper;
 using Nancy.Bootstrappers.Autofac;
 using Owin;
+using ServiceStack.OrmLite;
 
 namespace CS431_Project
 {
@@ -29,8 +30,8 @@ namespace CS431_Project
 
             //OrmLiteConfig.DialectProvider = PostgreSqlDialect.Provider;
             //OrmLiteConfig.DialectProvider.NamingStrategy = new PostgreSqlNamingStrategy();
-            //builder.RegisterInstance(new OrmLiteConnectionFactory("Server=localhost;Port=5432;User Id=postgres; Password=password; Database=cs431project;"));
-            //builder.RegisterInstance(new OrmLiteConnectionFactory("Server=localhost;Port=5432;User Id=postgres;Password=password;Database=cs431project;"));
+            OrmLiteConfig.DialectProvider = MySqlDialect.Provider;
+            builder.RegisterInstance(new OrmLiteConnectionFactory("Server=localhost;Port=3306;User Id=root;Password=password;Database=cs431project;"));
 
             builder.Update(existingContainer.ComponentRegistry);
         }
@@ -61,6 +62,8 @@ namespace CS431_Project
     {
         public void Configuration(IAppBuilder app)
         {
+            // If this throws an error, see "Running without Admin mode" mentioned here:
+            // https://github.com/NancyFx/Nancy/wiki/Hosting-nancy-with-owin#katana---httplistener-selfhost
             app.UseNancy();
         }
     }
@@ -73,7 +76,6 @@ namespace CS431_Project
 
             // If this throws an error, see "Running without Admin mode" mentioned here:
             // https://github.com/NancyFx/Nancy/wiki/Hosting-nancy-with-owin#katana---httplistener-selfhost
-            
             using (WebApp.Start<OwinStartup>(url))
             {
                 Console.WriteLine("Running on {0}", url);

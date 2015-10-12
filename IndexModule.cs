@@ -7,8 +7,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Autofac;
 using Autofac.Core;
-using Microsoft.Data.Entity;
 using Nancy;
+using ServiceStack.Data;
+using ServiceStack.DataAnnotations;
+using ServiceStack.OrmLite;
 
 // EF7 http://wildermuth.com/2015/03/17/A_Look_at_ASP_NET_5_Part_3_-_EF7
 
@@ -34,12 +36,12 @@ namespace CS431_Project
 
     public class AdminModule : Nancy.NancyModule
     {
-        public AdminModule()
+        public AdminModule(OrmLiteConnectionFactory db)
             : base("/admin")
         {
             Get["/create/{recreate?}"] = _ =>
             {
-                var admin = new AdminModel();
+                var admin = new AdminModel(db);
                 admin.CreateDatabase(_.recreate== "recreate");
                 return admin;
             };
@@ -48,14 +50,14 @@ namespace CS431_Project
             // https://github.com/NancyFx/Nancy/wiki/Async
             Get["/populatetestdata"] = _ =>
             {
-                var admin = new AdminModel();
+                var admin = new AdminModel(db);
                 admin.CreateTestData();
                 return admin;
             };
             
             Get["/gettestdata"] = _ =>
             {
-                var admin = new AdminModel();
+                var admin = new AdminModel(db);
                 admin.ShowTestData();
                 return admin;
             };
@@ -64,71 +66,59 @@ namespace CS431_Project
 
     public class AdminModel
     {
+        private readonly OrmLiteConnectionFactory _db;
         public string Operation;
         public string Status;
         
         public void CreateDatabase(bool recreate = false)
         {
             Operation = "Creating test data";
+            var dbconn =
+                new OrmLiteConnectionFactory(
+                    "Server=localhost;Port=3306;User Id=root;Password=password;");
+            using (var db = dbconn.Open())
+            {
+                db.ExecuteSql("CREATE DATABASE CS431PROJECT;");
+            }
             Status = "Run the Update-Database command in the Package Manager Console :)";
         }
 
         public void CreateTestData()
         {
             Operation = "Creating test data";
-            using (var db = new InterestContext())
+            using (var db = _db.Open())
             {
-                db.interests.Add(new Interest {Name = "blah", Age = 424, otherthing = new thing {Value = 42}});
-                var count = db.SaveChanges();
-                Status = $"{count} records saved";
+                db.CreateTableIfNotExists<Interest>();
+                db.CreateTableIfNotExists<thing>();
+                db.Save(new Interest {Name = "blah", Age = 424, otherthing = new thing {Value = 42}});
             }
         }
 
         public void ShowTestData()
         {
             Operation = "Retrieving test data";
-            using (var db = new InterestContext())
+            using (var db = _db.Open())
             {
-                Status = db.interests.First().ToString();
+                Status = db.SingleById<Interest>(0).ToString();
             }
         }
-    }
 
-    public class InterestContext : DbContext
-    {
-        public DbSet<Interest> interests { get; set; }
-
-        public InterestContext()
+        public AdminModel(OrmLiteConnectionFactory db)
         {
-            Database.EnsureCreated();
-        }
-        
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            // "Server=localhost;Port=5432;User Id=postgres;Password=password;Database=cs431project;"
-            optionsBuilder.UseNpgsql(@"Server=localhost;Port=5432;Database=cs431project;User Id=postgres;Password=password;");
-        }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
+            _db = db;
         }
     }
+//        optionsBuilder.UseNpgsql(@"Server=localhost;Port=5432;Database=cs431project;User Id=postgres;Password=password;");
 
-    [Table("interest")]
     public class Interest
     {
-        [Column("id")]
         public int InterestId { get; set; } // id must be lower case
         
-        [Column("name")]
         public string Name { get; set; }
 
-        [Column("age")]
         public int? Age { get; set; }
 
-
-        [Column("otherthing")]
+        [Reference]
         public thing otherthing { get; set; }
 
         public override string ToString()
@@ -139,10 +129,8 @@ namespace CS431_Project
 
     public class thing
     {
-        [Column("id")]
         public int thingId { get; set; }
 
-        [Column("value")]
         public int? Value { get; set; }
 
         public override string ToString()
