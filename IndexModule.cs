@@ -88,9 +88,9 @@ namespace CS431_Project
             Operation = "Creating test data";
             using (var db = _db.Open())
             {
-                db.CreateTableIfNotExists<Interest>();
-                db.CreateTableIfNotExists<thing>();
-                db.Save(new Interest {Name = "blah", Age = 424, otherthing = new thing {Value = 42}});
+                db.DropAndCreateTable<Interest>();
+                db.DropAndCreateTable<thing>();
+                db.Save(new Interest {Name = "blah", Age = 424, otherthing = new thing {Value = 42}}, references: true);
             }
         }
 
@@ -99,7 +99,7 @@ namespace CS431_Project
             Operation = "Retrieving test data";
             using (var db = _db.Open())
             {
-                Status = db.SingleById<Interest>(0).ToString();
+                Status = db.LoadSelect<Interest>(s => s.Age == 424).First().ToString();
             }
         }
 
@@ -118,6 +118,8 @@ namespace CS431_Project
 
         public int? Age { get; set; }
 
+        public int otherthingId { get; set; }
+
         [Reference]
         public thing otherthing { get; set; }
 
@@ -130,6 +132,8 @@ namespace CS431_Project
     public class thing
     {
         public int thingId { get; set; }
+
+        public int InterestId { get; set; }
 
         public int? Value { get; set; }
 
