@@ -55,6 +55,8 @@ namespace CS431_Project.Models
         int MovieId;
         int ShowingId;
         int CustomerId;
+        int PromotionId;
+
         DateTime PurchaseTime;
         // other purchase info
 
@@ -66,6 +68,9 @@ namespace CS431_Project.Models
 
         [Reference]
         public Customer Customer { get; set; }
+
+        [Reference]
+        public Promotion Promotion { get; set; }
     }
 
     public class Promotion
