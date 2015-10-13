@@ -17,6 +17,8 @@ namespace CS431_Project.Models
         // Should be changed to a numeric type if we want to enable eg sorting by duration
         public TimeSpan Duration { get; set; }
 
+        public DateTime ReleaseDate { get; set; }
+
         public enum genre
         {
             Commedy,
