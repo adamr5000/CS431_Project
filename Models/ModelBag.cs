@@ -55,7 +55,7 @@ namespace CS431_Project.Models
         int MovieId;
         int ShowingId;
         int CustomerId;
-        int PromotionId;
+        int? PromotionId; // '?' = Nullable => optional
 
         DateTime PurchaseTime;
         // other purchase info
