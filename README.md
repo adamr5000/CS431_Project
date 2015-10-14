@@ -8,15 +8,14 @@
 # Setup
 
 - Visual Studio
-- Postgres - use a password of 'password' when you install (or set up a .config file so we can all have whatever password we want)
-- [pgcli](http://pgcli.com/) - helpful for working with Postgres
-- [PostgreSQL Command Line Cheat Sheet](https://gist.github.com/jmeridth/f2ad6b580ae18501c538#file-postgresql_command_line_cheat_sheet-md)
+- Database can be MySQL or Postgres (Mysql auth should be root:password, Postgres should be postgres:password)
 
 ```
 	git clone
 	Open project in visual studio
-	Build (may have to press twice to let NuGet download packages)
+	Build
 	Run
+	See localhost:8080
 ```
 
 # Docs
