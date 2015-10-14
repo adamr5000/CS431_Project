@@ -1,4 +1,12 @@
-﻿<h1>Admin Panel</h1>
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<dynamic>
+@using System
+@using CS431_Project.Models
+
+@{
+    Layout = "Layout.cshtml";
+}
+
+<h1>Admin Panel</h1>
 
 @if (Model != null)
 {

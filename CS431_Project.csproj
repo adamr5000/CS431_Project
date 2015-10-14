@@ -144,14 +144,20 @@
     <None Include="packages.config" />
     <None Include="README.md" />
     <None Include="views\Admin.cshtml" />
+    <None Include="views\Layout.cshtml" />
     <None Include="views\NewMovie.cshtml" />
     <None Include="views\MovieList.cshtml" />
     <None Include="views\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
+    <Content Include="Content\css\normalize.css" />
+    <Content Include="Content\css\skeleton.css" />
+    <Content Include="Content\images\favicon.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Content\js\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

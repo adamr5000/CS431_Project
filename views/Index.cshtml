@@ -1,9 +1,17 @@
-﻿<h1>@Model.Text</h1>
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<dynamic>
+@using System
+@using CS431_Project.Models
+
+@{
+    Layout = "Layout.cshtml";
+}
+
+<h1>Welcome to @Model.Text</h1>
 
 <a href="admin/create">Create the database</a> (<a href="admin/create/recreate">Recreate</a>)<br />
+<a href="admin/populatetestdata">Create database tables</a><br />
 
-<a href="admin/populatetestdata">Add some test data</a><br />
-
-<a href="admin/gettestdata">Retrieve</a><br />
-
-Do other stuff<br />
+<h4>Basic Page</h4>
+<p>
+    This index.html page is a placeholder with the CSS, font and favicon. It's just waiting for you to add some content! If you need some help hit up the <a href="http://www.getskeleton.com">Skeleton documentation</a>.
+</p>

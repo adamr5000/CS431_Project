@@ -1,0 +1,44 @@
+﻿<!-- http://getskeleton.com/ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Basic Page Needs
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta charset="utf-8">
+    <title>Your page title here :)</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Mobile Specific Metas
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- FONT
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    <!-- CSS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="/Content/css/normalize.css">
+    <link rel="stylesheet" href="/Content/css/skeleton.css">
+    <!-- Favicon
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="icon" type="image/png" href="/Content/images/favicon.png">
+</head>
+<body>
+    <!-- Primary Page Layout
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<div class="container">
+    <div class="row">
+        <div class="one-third column" style="margin-top: 30%">
+            <a class="button button-primary" href="/">Town Cinema</a>
+            <a class="button" href="/movies">List movies</a>
+            <a class="button" href="/movies/create">Create a movie</a>
+            <a class="button" href="/movies/0"><s>Movie detail view</s></a>
+        </div>
+        <div class="two-thirds column" style="margin-top: 25%">
+            @RenderBody()
+        </div>
+    </div>
+</div>
+    <!-- End Document
+      –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>

@@ -1,4 +1,12 @@
-﻿<h1>@Model.Title</h1>
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<dynamic>
+@using System
+@using CS431_Project.Models
+
+@{
+    Layout = "Layout.cshtml";
+}
+
+<h1>@Model.Title</h1>
 
 @foreach (var x in Model.Movies)
 {<li>@x.ToString()</li>}

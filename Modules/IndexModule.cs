@@ -8,7 +8,7 @@ namespace CS431_Project
     {
         public IndexModule()
         {
-            Get["/"] = _ => new IndexModel("Hello world");
+            Get["/"] = _ => new IndexModel("Town Cinema"); // Could come from a settings table
         }
     }
 }

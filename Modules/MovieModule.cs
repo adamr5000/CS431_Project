@@ -20,7 +20,7 @@ namespace CS431_Project
 
             Post["/create"] = _ =>
             {
-                var movie = this.Bind<Movie>();
+                var movie = this.Bind<Movie>(); // Binds the POST result to movie variable (as a movie object)
                 var movieController = new MovieController(db);
                 movieController.AddMovie(movie);
                 return 200;
