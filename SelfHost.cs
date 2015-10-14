@@ -64,7 +64,7 @@ namespace CS431_Project
                 builder.RegisterInstance(
                     new OrmLiteConnectionFactory(
                         @"Server=localhost;Port=5432;Database=cs431project;User Id=postgres;Password=password;Database=cs431project;"));
-                NoDBConnectionString = @"Server=localhost;Port=5432;Database=cs431project;User Id=postgres;Password=password;";
+                NoDBConnectionString = @"Server=localhost;Port=5432;User Id=postgres;Password=password;";
             }
             else throw new Exception("No local database detected");
 

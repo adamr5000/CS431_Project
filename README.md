@@ -25,3 +25,4 @@
 # Notes
 - View engines used: [Razor](https://github.com/aspnet/Razor), <s>[Markdown](http://blog.jonathanchannon.com/2013/04/08/using-a-markdown-viewengine-with-nancy/)</s> The Markdown view engine doesn't work with Autofac and I don't care to fix it.
 - IOC used: [Autofac](http://autofac.org/)
+- Code attempts to detect whether your dev machine is running MySQL or Postgres. The expected default password for each is 'password'.

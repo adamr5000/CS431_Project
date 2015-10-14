@@ -13,9 +13,7 @@ namespace CS431_Project.Models
 
         string Title;
 
-        // This probably gets serialized as a blob
-        // Should be changed to a numeric type if we want to enable eg sorting by duration
-        public TimeSpan Duration { get; set; }
+        public int Duration { get; set; }
 
         public DateTime ReleaseDate { get; set; }
 
@@ -29,6 +27,11 @@ namespace CS431_Project.Models
         public genre Genre { get; set; }
 
         // Awards, etc
+
+        public override string ToString()
+        {
+            return $"{MovieId}: {Title}, {Duration} minutes, {ReleaseDate} release, {Genre}";
+        }
     }
 
     public class Customer
@@ -41,7 +44,10 @@ namespace CS431_Project.Models
     {
         int ShowingId;
         decimal Price;
-        DateTime Time; // This is also probably serialized as a blob. Maybe.
+        
+        // This probably gets serialized as a blob
+        // Should be changed to a numeric type if we want to enable eg sorting by duration
+        DateTime Time;
         int ScreenNumber;
         int TotalSeats;
         int AvailableSeats;

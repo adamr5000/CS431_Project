@@ -128,8 +128,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IndexModule.cs" />
+    <Compile Include="Controllers\AdminModel.cs" />
+    <Compile Include="Modules\AdminModule.cs" />
+    <Compile Include="Models\IndexModel.cs" />
+    <Compile Include="Modules\IndexModule.cs" />
     <Compile Include="Models\ModelBag.cs" />
+    <Compile Include="Controllers\MovieController.cs" />
+    <Compile Include="Models\MovieList.cs" />
+    <Compile Include="Modules\MovieModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SelfHost.cs" />
   </ItemGroup>
@@ -138,11 +144,14 @@
     <None Include="packages.config" />
     <None Include="README.md" />
     <None Include="views\Admin.cshtml" />
+    <None Include="views\NewMovie.cshtml" />
+    <None Include="views\MovieList.cshtml" />
     <None Include="views\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
