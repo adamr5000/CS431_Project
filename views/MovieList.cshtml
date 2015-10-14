@@ -9,4 +9,4 @@
 <h1>@Model.Title</h1>
 
 @foreach (var x in Model.Movies)
-{<li>@x.ToString()</li>}
+{<li>@Html.Partial("SingleMovie.cshtml", x)</li>}

@@ -145,6 +145,7 @@
     <None Include="README.md" />
     <None Include="views\Admin.cshtml" />
     <None Include="views\Layout.cshtml" />
+    <None Include="views\SingleMovie.cshtml" />
     <None Include="views\NewMovie.cshtml" />
     <None Include="views\MovieList.cshtml" />
     <None Include="views\Index.cshtml" />
