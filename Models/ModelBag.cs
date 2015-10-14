@@ -9,7 +9,9 @@ namespace CS431_Project.Models
 {
     public class Movie
     {
-        int MovieId;
+        [AutoIncrement]
+        [PrimaryKey]
+        int MovieId { get; set; }
 
         string Title;
 
@@ -36,13 +38,17 @@ namespace CS431_Project.Models
 
     public class Customer
     {
-        int CustomerId;
+        [AutoIncrement]
+        [PrimaryKey]
+        int CustomerId { get; set; }
         string Name;
     }
 
     public class Showing
     {
-        int ShowingId;
+        [AutoIncrement]
+        [PrimaryKey]
+        int ShowingId { get; set; }
         decimal Price;
         
         // This probably gets serialized as a blob
@@ -59,7 +65,9 @@ namespace CS431_Project.Models
 
     public class Purchase
     {
-        int PurchaseId;
+        [AutoIncrement]
+        [PrimaryKey]
+        int PurchaseId { get; set; }
         int MovieId;
         int ShowingId;
         int CustomerId;
@@ -83,7 +91,9 @@ namespace CS431_Project.Models
 
     public class Promotion
     {
-        int PromotionId;
+        [AutoIncrement]
+        [PrimaryKey]
+        int PromotionId { get; set; }
         string PromotionCode;
         DateTime Expiration;
 

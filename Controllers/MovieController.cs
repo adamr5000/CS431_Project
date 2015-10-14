@@ -25,7 +25,7 @@ namespace CS431_Project
             // Validate movie
             using (var db = _db.Open())
             {
-                var id = db.Insert(m);
+                var id = db.Insert(m, selectIdentity: true);
                 // Log id
             }
         }
