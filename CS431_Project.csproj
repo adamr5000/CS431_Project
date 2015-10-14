@@ -80,6 +80,10 @@
       <HintPath>packages\Nancy.ViewEngines.Razor.HtmlHelpers.0.1.14-alpha\lib\net40\Nancy.ViewEngines.Razor.HtmlHelpers.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Npgsql, Version=3.0.3.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <HintPath>packages\Npgsql.3.0.3\lib\net45\Npgsql.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
       <Private>True</Private>
@@ -98,6 +102,10 @@
     </Reference>
     <Reference Include="ServiceStack.OrmLite.MySql, Version=4.0.46.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\ServiceStack.OrmLite.MySql.4.0.46\lib\net45\ServiceStack.OrmLite.MySql.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ServiceStack.OrmLite.PostgreSQL, Version=4.0.46.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ServiceStack.OrmLite.PostgreSQL.4.0.46\lib\net40\ServiceStack.OrmLite.PostgreSQL.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ServiceStack.Text, Version=4.0.46.0, Culture=neutral, processorArchitecture=MSIL">

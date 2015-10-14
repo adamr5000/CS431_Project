@@ -73,9 +73,7 @@ namespace CS431_Project
         public void CreateDatabase(bool recreate = false)
         {
             Operation = "Creating test data";
-            var dbconn =
-                new OrmLiteConnectionFactory(
-                    "Server=localhost;Port=3306;User Id=root;Password=password;");
+            var dbconn = new OrmLiteConnectionFactory(Bootstrapper.NoDBConnectionString);
             using (var db = dbconn.Open())
             {
                 db.ExecuteSql("CREATE DATABASE CS431PROJECT;");
@@ -108,7 +106,6 @@ namespace CS431_Project
             _db = db;
         }
     }
-//        optionsBuilder.UseNpgsql(@"Server=localhost;Port=5432;Database=cs431project;User Id=postgres;Password=password;");
 
     public class Interest
     {
