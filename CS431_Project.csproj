@@ -143,6 +143,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="README.md" />
+    <None Include="views\AdminIndex.cshtml" />
     <None Include="views\Admin.cshtml" />
     <None Include="views\Layout.cshtml" />
     <None Include="views\MovieDetail.cshtml" />

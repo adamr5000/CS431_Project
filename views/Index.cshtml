@@ -4,12 +4,10 @@
 
 @{
     Layout = "Layout.cshtml";
+    ViewBag.Title = Model.Text;
 }
 
 <h1>Welcome to @Model.Text</h1>
-
-<a href="admin/create">Create the database</a> (<a href="admin/create/recreate">Recreate</a>)<br />
-<a href="admin/populatetestdata">Create database tables</a><br />
 
 <h4>Basic Page</h4>
 <p>

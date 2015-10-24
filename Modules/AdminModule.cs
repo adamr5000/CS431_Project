@@ -8,6 +8,11 @@ namespace CS431_Project
         public AdminModule(OrmLiteConnectionFactory db)
             : base("/admin")
         {
+            Get["/"] = _ =>
+            {
+                return View["AdminIndex"];
+            };
+
             Get["/create/{recreate?}"] = _ =>
             {
                 var admin = new AdminModel(db);

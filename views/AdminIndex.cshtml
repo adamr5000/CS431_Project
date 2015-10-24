@@ -1,0 +1,11 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<dynamic>
+@using System
+@using CS431_Project.Models
+
+@{
+    Layout = "Layout.cshtml";
+    ViewBag.Title = "Administration";
+}
+
+<a href="admin/create"> Create the database</a> (<a href="admin/create/recreate">Attempt to drop and recreate</a>)<br />
+<a href="admin/populatetestdata"> Create database tables</a><br />
