@@ -1,7 +1,8 @@
-﻿@using CS431_Project.Models
+﻿@using System
+@using CS431_Project.Models
 <div>
     <div>
-        <a href="/movies/@Model.GetPrettyTitleLink()">Title: @Model.Title</a>
+        <a href="/movies/@Model.GetPrettyTitleLink()">@Model.Title</a>
     </div>
     <div>
         Duration: @((new TimeSpan(0, Model.Duration, 0)).ToString(@"hh\:mm"))
