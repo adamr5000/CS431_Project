@@ -62,14 +62,6 @@ namespace CS431_Project
         public void PopulateTestData()
         {
             Operation = "Creating test data";
-            using (var db = _db.Open())
-            {
-                db.DropAndCreateTable<Movie>();
-                db.DropAndCreateTable<Customer>();
-                db.DropAndCreateTable<Showing>();
-                db.DropAndCreateTable<Purchase>();
-                db.DropAndCreateTable<Promotion>();
-            }
         }
     }
 }

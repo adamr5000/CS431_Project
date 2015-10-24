@@ -8,6 +8,7 @@ using Nancy;
 using Nancy.ModelBinding;
 using Nancy.ViewEngines.Razor.HtmlHelpers;
 using ServiceStack;
+using ServiceStack.Data;
 using ServiceStack.OrmLite;
 
 namespace CS431_Project
@@ -55,9 +56,9 @@ namespace CS431_Project
 
     public class ShowingsController
     {
-        private readonly OrmLiteConnectionFactory _db;
+        private readonly IDbConnectionFactory _db;
 
-        public ShowingsController(OrmLiteConnectionFactory db)
+        public ShowingsController(IDbConnectionFactory db)
         {
             _db = db;
         }
@@ -66,7 +67,7 @@ namespace CS431_Project
         {
             using (var db = _db.Open())
             {
-                return db.LoadSelect<Showing>(showing => true);
+                return db.LoadSelect<Showing>();
             }
         }
 
