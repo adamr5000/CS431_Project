@@ -1,5 +1,7 @@
 # CS431 Project
 
+[![Build status](https://ci.appveyor.com/api/projects/status/dvgcj4bd9cqwyywm/branch/master?svg=true)](https://ci.appveyor.com/project/GeorgeHahn/cs431-project/branch/master)
+
 # Team
 - [Adam](https://github.com/adamr5000)
 - [George](https://github.com/GeorgeHahn)
