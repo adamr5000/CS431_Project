@@ -4,9 +4,8 @@
 
 @{
     Layout = "Layout.cshtml";
+    ViewBag.Title = Model.Title;
 }
-
-<h1>@Model.Title</h1>
 
 @foreach (var x in Model.Movies)
 {<div>@Html.Partial("SingleMovie.cshtml", x)</div>}

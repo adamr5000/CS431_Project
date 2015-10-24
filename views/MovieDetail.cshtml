@@ -1,22 +1,23 @@
 ﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<dynamic>
 @using System
 @using CS431_Project.Models
+@using Nancy.ViewEngines.Razor.HtmlHelpers
 
 @{
     Layout = "Layout.cshtml";
+    ViewBag.Title = Model.Title;
 }
-
-<h1>@Model.Title</h1>
 
 <div>
     <div>
         Title: @Model.Title
     </div>
     <div>
-        Duration: @Model.Duration
+        Duration:
+        @((new TimeSpan(0, Model.Duration, 0)).ToString(@"hh\:mm"))
     </div>
     <div>
-        Release: @Model.ReleaseDate
+        Release: @Model.ReleaseDate.ToLongDateString()
     </div>
     <div>
         Genre: @Model.Genre

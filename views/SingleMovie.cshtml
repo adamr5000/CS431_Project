@@ -4,7 +4,7 @@
         <a href="/movies/@Model.GetPrettyTitleLink()">Title: @Model.Title</a>
     </div>
     <div>
-        Duration: @Model.Duration
+        Duration: @((new TimeSpan(0, Model.Duration, 0)).ToString(@"hh\:mm"))
     </div>
     <div>
         Release: @Model.ReleaseDate
