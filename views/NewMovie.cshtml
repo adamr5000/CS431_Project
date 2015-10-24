@@ -1,16 +1,82 @@
 ﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<dynamic>
 @using System
+@using System.Collections.Generic
+@using System.Reflection
 @using CS431_Project.Models
+@using Nancy.ViewEngines.Razor.HtmlHelpers
 
 @{
     Layout = "Layout.cshtml";
+    ViewBag.Title = "New movie";
 }
 
 <h1>New Movie</h1>
 <form method="POST">
-    Title <input name="Title" />
-    Duration
-    ReleaseDate
-    Genre
-    <button onclick="submit">Submit</button>
+    <div id="title">
+        <label>Title</label>
+        <input name="Title"/>
+    </div>
+
+    <div>
+        <label>Duration</label>
+        <label id="DurationText" style="border: 0; color: #494949; font-weight: bold;"></label>
+        <input type="hidden" id="Duration" name="Duration"/>
+
+        <div id="durationslider"></div>
+
+        <script>
+            $(function () {
+                $("#durationslider").slider({
+                    min: 0,
+                    max: 300,
+                    slide: function (event, ui) {
+                        $("#Duration").val(ui.value);
+                        $("#DurationText").text((function (val) {
+                            var hours = Math.trunc(val / 60);
+                            val = val % 60;
+                            if (hours > 1) {
+                                hours = hours + " hours ";
+                            } else if (hours === 1) {
+                                hours = "1 hour ";
+                            } else { 
+                                hours = "";
+                            }
+                            if (val > 1)
+                                val = val + " minutes";
+                            else if (val === 1)
+                                val = "1 minute";
+                            else
+                                val = "";
+                            return hours + val;
+                        })(ui.value));
+                    }
+                });
+                $("#DurationText").text("0 minutes");
+            });
+        </script>
+    </div>
+
+    <div id="releasedate">
+        <label>Release Date</label>
+        <input name="ReleaseDate" type="date"/>
+
+        <script>
+            if (!Modernizr.inputtypes.date) {
+                $('input[type=date]')
+                    .attr('type', 'text')
+                    .datepicker({
+                        dateFormat:'mm-dd-yy'
+                    });
+            }
+        </script>
+    </div>
+
+    <div id="genre">
+        <label>Genre</label>
+        @Html.DropDownList("Genre", StringEnum.GetSelectListItems<Movie.genre>())
+    </div>
+
+    <div>
+        <button onclick=" submit ">Submit</button>
+    </div>
 </form>
