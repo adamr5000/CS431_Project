@@ -25,7 +25,6 @@ namespace CS431_Project
                 {
                     try
                     {
-                        // if Postgres
                         db.ExecuteSql("DROP DATABASE CS431PROJECT;");
                     }
                     catch (Exception)
