@@ -26,4 +26,5 @@
 # Notes
 - View engines used: [Razor](https://github.com/aspnet/Razor), <s>[Markdown](http://blog.jonathanchannon.com/2013/04/08/using-a-markdown-viewengine-with-nancy/)</s> The Markdown view engine doesn't work with Autofac and I don't care to fix it.
 - IOC used: [Autofac](http://autofac.org/)
-- Code attempts to detect whether your dev machine is running MySQL or Postgres. The expected default password for each is 'password'. If this fails on your machine, open an issue and I'll create proper database configuration files.
+- Code attempts to detect whether your dev machine is running MySQL or Postgres. The expected default password for each is 'password'. If this fails on your machine, open an issue and I'll create proper database configuration files. 
+- I use [Sentinel Log Viewer](https://sentinel.codeplex.com/), but anything that supports NLog (and family) should work. (Use the default Sentinel settings for the current nlog.config).
