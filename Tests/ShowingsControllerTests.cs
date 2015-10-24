@@ -32,7 +32,14 @@ namespace CS431_Project.Tests
 
         public void Dispose()
         {
-            // destroy db
+            using (var db = b.Open())
+            {
+                db.DropAndCreateTable<Movie>();
+                db.DropAndCreateTable<Customer>();
+                db.DropAndCreateTable<Showing>();
+                db.DropAndCreateTable<Purchase>();
+                db.DropAndCreateTable<Promotion>();
+            }
         }
 
         public OrmLiteConnectionFactory b { get; set; }
