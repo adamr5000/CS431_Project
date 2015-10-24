@@ -13,9 +13,11 @@ using Xunit;
 
 namespace CS431_Project.Tests
 {
-    public class DBFixture : IDisposable
+    public class ShowingsControllerTests
     {
-        public DBFixture()
+        private readonly OrmLiteConnectionFactory b;
+
+        public ShowingsControllerTests()
         {
             b = new OrmLiteConnectionFactory(":memory:", SqliteOrmLiteDialectProvider.Instance, true);
             b.AutoDisposeConnection = false;
@@ -30,41 +32,17 @@ namespace CS431_Project.Tests
             }
         }
 
-        public void Dispose()
-        {
-            using (var db = b.Open())
-            {
-                db.DropAndCreateTable<Movie>();
-                db.DropAndCreateTable<Customer>();
-                db.DropAndCreateTable<Showing>();
-                db.DropAndCreateTable<Purchase>();
-                db.DropAndCreateTable<Promotion>();
-            }
-        }
-
-        public OrmLiteConnectionFactory b { get; set; }
-    }
-
-    public class ShowingsControllerTests: IClassFixture<DBFixture>
-    {
-        private readonly DBFixture d;
-
-        public ShowingsControllerTests(DBFixture d)
-        {
-            this.d = d;
-        }
-
         [Fact]
         public void StartsEmpty()
         {
-            var showingsController = new ShowingsController(d.b);
+            var showingsController = new ShowingsController(b);
             showingsController.ListAll().ShouldBeEmpty();
         }
 
         [Fact]
         public void ShowingCanBeAdded()
         {
-            var showingsController = new ShowingsController(d.b);
+            var showingsController = new ShowingsController(b);
             showingsController.AddShowing(new Showing
             {
                 Movie = null,
@@ -80,7 +58,7 @@ namespace CS431_Project.Tests
         [Fact]
         public void ShowingCanBeLookedUp()
         {
-            var showingsController = new ShowingsController(d.b);
+            var showingsController = new ShowingsController(b);
             var theshowing = new Showing
             {
                 Movie = null,
@@ -103,7 +81,7 @@ namespace CS431_Project.Tests
         [Fact]
         public void SeatsAvailableGetsSet()
         {
-            var showingsController = new ShowingsController(d.b);
+            var showingsController = new ShowingsController(b);
             var theshowing = new Showing
             {
                 Movie = null,
