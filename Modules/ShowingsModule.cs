@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
+using Anotar.NLog;
 using CS431_Project.Models;
 using Nancy;
 using Nancy.ModelBinding;
@@ -41,7 +42,8 @@ namespace CS431_Project
 
             Post["/create"] = _ =>
             {
-                var showing = this.Bind<Showing>(); // Binds the POST result to movie variable (as a movie object)
+                var showing = this.Bind<Showing>();
+                LogTo.Debug("Adding showing: {0}", showing);
                 var showingsController = new ShowingsController(db);
                 var showingId = showingsController.AddShowing(showing);
                 return Response.AsRedirect("/showings/" + showingId);
