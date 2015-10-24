@@ -1,7 +1,7 @@
 ﻿@using CS431_Project.Models
 <div>
     <div>
-        Title: @Model.Title
+        <a href="/movies/@Model.GetPrettyTitleLink()">Title: @Model.Title</a>
     </div>
     <div>
         Duration: @Model.Duration
