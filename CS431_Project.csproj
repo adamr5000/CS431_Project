@@ -135,7 +135,8 @@
     <Compile Include="Models\ModelBag.cs" />
     <Compile Include="Controllers\MovieController.cs" />
     <Compile Include="Models\MovieList.cs" />
-    <Compile Include="Modules\MovieModule.cs" />
+    <None Include="Modules\ShowtimesModule" />
+    <Compile Include="Modules\ShowingsModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SelfHost.cs" />
   </ItemGroup>
