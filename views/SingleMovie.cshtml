@@ -8,7 +8,7 @@
         Duration: @((new TimeSpan(0, Model.Duration, 0)).ToString(@"hh\:mm"))
     </div>
     <div>
-        Release: @Model.ReleaseDate
+        Release: @Model.ReleaseDate.ToLongDateString()
     </div>
     <div>
         Genre: @Model.Genre
