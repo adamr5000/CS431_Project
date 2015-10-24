@@ -1,0 +1,22 @@
+﻿@using System
+@using CS431_Project.Models
+<div>
+    <div>
+        <a href="/showings/@Model.ShowingId">@Model.ShowingId</a>
+    </div>
+    <div style="background-color: #EEEEEE">
+        Movie: @Html.Partial("SingleMovie.cshtml", Model.Movie)
+    </div>
+    <div>
+        Showtime: @Model.Time.ToString()
+    </div>
+    <div>
+        Screen number: @Model.ScreenNumber
+    </div>
+    <div>
+        Total seats: @Model.TotalSeats
+    </div>
+    <div>
+        Available seats: @Model.AvailableSeats
+    </div>
+</div>

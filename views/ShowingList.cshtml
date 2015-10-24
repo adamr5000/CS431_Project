@@ -1,0 +1,11 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<dynamic>
+@using System
+@using CS431_Project.Models
+
+@{
+    Layout = "Layout.cshtml";
+    ViewBag.Title = "Showings";
+}
+
+@foreach (var x in Model)
+{<div>@Html.Partial("SingleShowing.cshtml", x)</div>}

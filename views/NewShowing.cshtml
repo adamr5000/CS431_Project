@@ -1,0 +1,72 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<dynamic>
+@using System
+@using System.Collections.Generic
+@using System.Reflection
+@using CS431_Project.Models
+@using Nancy.ViewEngines.Razor.HtmlHelpers
+
+@{
+    Layout = "Layout.cshtml";
+    ViewBag.Title = "New showing";
+}
+
+<form method="POST">
+    <div>
+        <label>Movie</label>
+        @Html.DropDownList("MovieId", (IEnumerable<SelectListItem>)Model)
+    </div>
+
+    <div>
+        <label>Price</label>
+        <label id="PriceText" style="border: 0; color: #494949; font-weight: bold;"></label>
+        <input type="hidden" id="Price" name="Price"/>
+
+        <div id="priceslider"></div>
+
+        <script>
+            $(function () {
+                $("#priceslider").slider({
+                    min: 0,
+                    max: 3000,
+                    slide: function (event, ui) {
+                        var scalar = 100;
+                        $("#Price").val(ui.value / scalar);
+                        $("#PriceText").text("$" + (ui.value / scalar));
+                    }
+                });
+                $("#DurationText").text("$0");
+            });
+        </script>
+    </div>
+
+    <div>
+        <label>Showing Time</label>
+        <input name="ReleaseDate" type="date"/>
+
+        <script>
+            if (!Modernizr.inputtypes.date) {
+                $('input[type=date]')
+                    .attr('type', 'text')
+                    .datepicker({
+                        dateFormat: 'mm-dd-yy'
+                    });
+            }
+        </script>
+    </div>
+
+    <div>
+        <label>Screen Number</label>
+        <input name="ScreenNumber" type="number"/>
+    </div>
+
+    <div>
+        <label>Total Seats</label>
+        <input name="TotalSeats" type="number"/>
+    </div>
+
+    <input name="AvailableSeats" type="hidden" value="0"/>
+
+    <div>
+        <button onclick=" submit ">Submit</button>
+    </div>
+</form>

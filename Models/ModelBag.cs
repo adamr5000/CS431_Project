@@ -60,15 +60,13 @@ namespace CS431_Project.Models
         [PrimaryKey]
         public int ShowingId { get; set; }
         public decimal Price;
-
-        // This probably gets serialized as a blob
-        // Should be changed to a numeric type if we want to enable eg sorting by duration
+        
         public DateTime Time;
         public int ScreenNumber;
         public int TotalSeats;
         public int AvailableSeats;
-        public int MovieId;
 
+        public int MovieId;
         [Reference]
         public Movie Movie { get; set; }
     }

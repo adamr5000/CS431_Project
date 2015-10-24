@@ -1,7 +1,12 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using CS431_Project.Models;
 using Nancy;
 using Nancy.ModelBinding;
+using Nancy.ViewEngines.Razor.HtmlHelpers;
+using ServiceStack;
 using ServiceStack.OrmLite;
 
 namespace CS431_Project
@@ -14,26 +19,32 @@ namespace CS431_Project
             Get["/"] = _ =>
             {
                 var showings = new ShowingsController(db);
-                return showings.ListAll();
+                return View["ShowingList", showings.ListAll()];
             };
 
             Get["/{showing}"] = req =>
             {
                 var showings = new ShowingsController(db);
-                var showing = showings.GetShowing(req.movie);
+                var showing = showings.GetShowing(req.showing);
                 if (showing == null)
                     return 404;
-                return View["showingDetail", showing];
+                return View["ShowingDetail", showing];
             };
 
-            Get["/create"] = _ => View["NewShowing"];
+            Get["/create"] = _ =>
+            {
+                var movieController = new MovieController(db);
+                var movies = movieController.ListAll().Movies;
+                var selectlist = movies.Select(movie => new SelectListItem(movie.Title, movie.MovieId.ToString(), false)).ToList();
+                return View["NewShowing", selectlist];
+            };
 
             Post["/create"] = _ =>
             {
                 var showing = this.Bind<Showing>(); // Binds the POST result to movie variable (as a movie object)
                 var showingsController = new ShowingsController(db);
-                showingsController.AddShowing(showing);
-                return Response.AsRedirect("/showings/" + showing.ShowingId);
+                var showingId = showingsController.AddShowing(showing);
+                return Response.AsRedirect("/showings/" + showingId);
             };
 
             Post["/update/{id}"] = _ => { return 500; };
@@ -49,19 +60,32 @@ namespace CS431_Project
             _db = db;
         }
 
-        public Showing ListAll()
+        public IEnumerable<Showing> ListAll()
         {
-            return null;
+            using (var db = _db.Open())
+            {
+                return db.LoadSelect<Showing>(showing => true);
+            }
         }
 
         public Showing GetShowing(int showingId)
         {
-            return null;
+            using (var db = _db.Open())
+            {
+                return db.LoadSingleById<Showing>(showingId);
+            }
         }
 
-        public void AddShowing(Showing showing)
+        public int AddShowing(Showing showing)
         {
+            showing.AvailableSeats = showing.TotalSeats;
             
+            using (var db = _db.Open())
+            {
+                var id = db.Insert(showing, selectIdentity: true);
+                // Log id
+                return checked((int) id);
+            }
         }
     }
 }

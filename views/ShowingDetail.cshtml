@@ -1,0 +1,30 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<dynamic>
+@using System
+@using CS431_Project.Models
+@using Nancy.ViewEngines.Razor.HtmlHelpers
+
+@{
+    Layout = "Layout.cshtml";
+    ViewBag.Title = "Showing for " + Model.Movie.Title;
+}
+
+<div>
+    <div>
+        ID: @Model.ShowingId
+    </div>
+    <div style="background-color: #EEEEEE">
+        Movie: @Html.Partial("SingleMovie.cshtml", Model.Movie)
+    </div>
+    <div>
+        Showtime: @Model.Time.ToString()
+    </div>
+    <div>
+        Screen number: @Model.ScreenNumber
+    </div>
+    <div>
+        Total seats: @Model.TotalSeats
+    </div>
+    <div>
+        Available seats: @Model.AvailableSeats
+    </div>
+</div>
