@@ -1,11 +1,13 @@
 ﻿using System;
 using System.IO;
 using System.Net.Sockets;
+using Anotar.NLog;
 using Autofac;
 using Microsoft.Owin.Hosting;
 using Nancy;
 using Nancy.Bootstrapper;
 using Nancy.Bootstrappers.Autofac;
+using Nancy.Diagnostics;
 using Owin;
 using ServiceStack.OrmLite;
 using ServiceStack.OrmLite.PostgreSQL;
@@ -21,6 +23,11 @@ namespace CS431_Project
         {
             // No registrations should be performed in here, however you may
             // resolve things that are needed during application startup.
+        }
+
+        protected override DiagnosticsConfiguration DiagnosticsConfiguration
+        {
+            get { return new DiagnosticsConfiguration { Password = @"password" }; }
         }
 
         bool PortOpen(int port)
@@ -49,7 +56,7 @@ namespace CS431_Project
 
             if (PortOpen(3306))
             {
-                // Log "Using MySQL"
+                LogTo.Info("Using MySQL");
                 OrmLiteConfig.DialectProvider = MySqlDialect.Provider;
                 builder.RegisterInstance(
                     new OrmLiteConnectionFactory(
@@ -58,7 +65,7 @@ namespace CS431_Project
             }
             else if(PortOpen(5432))
             {
-                // Log "Using Postgres"
+                LogTo.Info("Using Postgres");
                 OrmLiteConfig.DialectProvider = PostgreSqlDialect.Provider;
                 OrmLiteConfig.DialectProvider.NamingStrategy = new PostgreSqlNamingStrategy();
                 builder.RegisterInstance(
