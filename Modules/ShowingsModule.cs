@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using Anotar.NLog;
+using CS431_Project.Controllers;
 using CS431_Project.Models;
+using CS431_Project.Modules;
 using Nancy;
 using Nancy.ModelBinding;
 using Nancy.ViewEngines.Razor.HtmlHelpers;
 using ServiceStack;
-using ServiceStack.Data;
 using ServiceStack.OrmLite;
 
 namespace CS431_Project
@@ -27,7 +28,7 @@ namespace CS431_Project
             Get["/{showing}"] = req =>
             {
                 var showings = new ShowingsController(db);
-                var showing = showings.GetShowing(req.showing);
+                var showing = showings.Get(req.showing);
                 if (showing == null)
                     return 404;
                 return View["ShowingDetail", showing];
@@ -46,49 +47,11 @@ namespace CS431_Project
                 var showing = this.Bind<Showing>();
                 LogTo.Debug("Adding showing: {0}", showing);
                 var showingsController = new ShowingsController(db);
-                var showingId = showingsController.AddShowing(showing);
+                var showingId = showingsController.Add(showing);
                 return Response.AsRedirect("/showings/" + showingId);
             };
 
             Post["/update/{id}"] = _ => { return 500; };
-        }
-    }
-
-    public class ShowingsController
-    {
-        private readonly IDbConnectionFactory _db;
-
-        public ShowingsController(IDbConnectionFactory db)
-        {
-            _db = db;
-        }
-
-        public IEnumerable<Showing> ListAll()
-        {
-            using (var db = _db.Open())
-            {
-                return db.LoadSelect<Showing>();
-            }
-        }
-
-        public Showing GetShowing(int showingId)
-        {
-            using (var db = _db.Open())
-            {
-                return db.LoadSingleById<Showing>(showingId);
-            }
-        }
-
-        public int AddShowing(Showing showing)
-        {
-            showing.AvailableSeats = showing.TotalSeats;
-            
-            using (var db = _db.Open())
-            {
-                var id = db.Insert(showing, selectIdentity: true);
-                // Log id
-                return checked((int) id);
-            }
         }
     }
 }

@@ -13,7 +13,7 @@ namespace CS431_Project.Models
     {
         [AutoIncrement]
         [PrimaryKey]
-        public int MovieId { get; set; }
+        public int MovieId { get; set; }        
 
         public string Title;
 
@@ -103,6 +103,7 @@ namespace CS431_Project.Models
         [PrimaryKey]
         public int PromotionId { get; set; }
         public string PromotionCode;
+        public string PromotionName;
         public DateTime Expiration;
 
         public PromotionType PromoType;

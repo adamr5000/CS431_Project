@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CS431_Project.Controllers;
 using CS431_Project.Models;
 using ServiceStack.Data;
 using ServiceStack.OrmLite;
@@ -33,17 +34,10 @@ namespace CS431_Project.Tests
         }
 
         [Fact]
-        public void StartsEmpty()
-        {
-            var showingsController = new ShowingsController(b);
-            showingsController.ListAll().ShouldBeEmpty();
-        }
-
-        [Fact]
         public void ShowingCanBeAdded()
         {
             var showingsController = new ShowingsController(b);
-            showingsController.AddShowing(new Showing
+            showingsController.Add(new Showing
             {
                 Movie = null,
                 Price = 10,
@@ -68,8 +62,8 @@ namespace CS431_Project.Tests
                 TotalSeats = 100
             };
 
-            var showing = showingsController.AddShowing(theshowing);
-            var retrieved = showingsController.GetShowing(showing);
+            var showing = showingsController.Add(theshowing);
+            var retrieved = showingsController.Get(showing);
 
             retrieved.MovieId.ShouldEqual(theshowing.MovieId);
             retrieved.Price.ShouldEqual(theshowing.Price);
@@ -91,8 +85,8 @@ namespace CS431_Project.Tests
                 TotalSeats = 100
             };
 
-            var showing = showingsController.AddShowing(theshowing);
-            var retrieved = showingsController.GetShowing(showing);
+            var showing = showingsController.Add(theshowing);
+            var retrieved = showingsController.Get(showing);
 
             retrieved.AvailableSeats.ShouldEqual(theshowing.TotalSeats);
         }
