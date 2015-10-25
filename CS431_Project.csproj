@@ -179,8 +179,10 @@
     <Compile Include="Modules\ShowingsModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SelfHost.cs" />
+    <Compile Include="Tests\CRUDControllerTests.cs" />
+    <Compile Include="Tests\InMemoryDbTest.cs" />
     <Compile Include="Tests\MovieControllerTests.cs" />
-    <Compile Include="Tests\PromotionTests.cs" />
+    <Compile Include="Tests\PromotionControllerTests.cs" />
     <Compile Include="Tests\ShowingsControllerTests.cs" />
   </ItemGroup>
   <ItemGroup>
