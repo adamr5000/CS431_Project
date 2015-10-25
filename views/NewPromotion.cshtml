@@ -1,0 +1,73 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<dynamic>
+@using System
+@using System.Collections.Generic
+@using System.Reflection
+@using CS431_Project.Models
+@using Nancy.ViewEngines.Razor.HtmlHelpers
+
+@{
+    Layout = "Layout.cshtml";
+    ViewBag.Title = "New promotion";
+}
+
+<form method="POST">
+    <div>
+        <label>Name</label>
+        <input name="PromotionName" type="text"/>
+    </div>
+
+    <div>
+        <label>Promo code</label>
+        <input name="PromotionCode" type="text" />
+    </div>
+
+    <div>
+        <label>Type</label>
+        @Html.DropDownList("PromoType", StringEnum.GetSelectListItems<Promotion.PromotionType>())
+    </div>
+
+    <div>
+        <label>Value</label>
+        <label id="ValueText" style="border: 0; color: #494949; font-weight: bold;"></label>
+        <input type="hidden" id="Value" name="PromoValue"/>
+
+        <div id="valueslider"></div>
+
+        <script>
+            $(function () {
+                // TODO: This needs to handle the above dropdown and either hide, show a percent indicator, or show a dollar indicator
+                $("#valueslider").slider({
+                    min: 0,
+                    max: 100,
+                    slide: function (event, ui) {
+                        $("#Value").val(ui.value);
+                        $("#ValueText").text((function (val) {
+                            val = val + " %";
+                            return val;
+                        })(ui.value));
+                    }
+                });
+                $("#ValueText").text("0 %");
+            });
+        </script>
+    </div>
+
+    <div>
+        <label>Expiration Date</label>
+        <input name="Expiration" type="date"/>
+
+        <script>
+            if (!Modernizr.inputtypes.date) {
+                $('input[type=date]')
+                    .attr('type', 'text')
+                    .datepicker({
+                        dateFormat:'mm-dd-yy'
+                    });
+            }
+        </script>
+    </div>
+
+    <div>
+        <button onclick=" submit ">Submit</button>
+    </div>
+</form>

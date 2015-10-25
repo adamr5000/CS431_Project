@@ -1,0 +1,27 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<dynamic>
+@using System
+@using CS431_Project.Models
+@using Nancy.ViewEngines.Razor.HtmlHelpers
+
+@{
+    Layout = "Layout.cshtml";
+    ViewBag.Title = Model.PromotionName;
+}
+
+<div>
+    <div>
+        @Model.PromotionName
+    </div>
+    <div>
+        @Model.PromotionCode
+    </div>
+    <div>
+        @Model.Expiration
+    </div>
+    <div>
+        @Model.PromoType
+    </div>
+    <div>
+        @Model.PromoValue
+    </div>
+</div>

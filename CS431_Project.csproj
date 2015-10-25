@@ -177,6 +177,7 @@
     <Compile Include="Models\MovieList.cs" />
     <Compile Include="Modules\MovieModule.cs" />
     <Compile Include="Modules\PromotionsModule.cs" />
+    <Compile Include="Modules\PurchaseModule.cs" />
     <Compile Include="Modules\ShowingsModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SelfHost.cs" />
@@ -196,10 +197,14 @@
     <None Include="views\AdminIndex.cshtml" />
     <None Include="views\Admin.cshtml" />
     <None Include="views\Layout.cshtml" />
+    <None Include="views\NewPromotion.cshtml" />
+    <None Include="views\PromotionList.cshtml" />
+    <None Include="views\PromotionDetail.cshtml" />
     <None Include="views\ShowingList.cshtml" />
     <None Include="views\ShowingDetail.cshtml" />
     <None Include="views\MovieDetail.cshtml" />
     <None Include="views\NewShowing.cshtml" />
+    <None Include="views\SinglePromotion.cshtml" />
     <None Include="views\SingleShowing.cshtml" />
     <None Include="views\SingleMovie.cshtml" />
     <None Include="views\NewMovie.cshtml" />
