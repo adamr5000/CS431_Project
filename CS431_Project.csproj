@@ -167,6 +167,7 @@
     <Compile Include="Controllers\AdminModel.cs" />
     <Compile Include="Controllers\CRUDController.cs" />
     <Compile Include="Controllers\PromotionController.cs" />
+    <Compile Include="Controllers\PurchaseController.cs" />
     <Compile Include="Controllers\ShowingsController.cs" />
     <Compile Include="Modules\AdminModule.cs" />
     <Compile Include="Models\IndexModel.cs" />
