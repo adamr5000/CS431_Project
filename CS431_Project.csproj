@@ -198,12 +198,16 @@
     <None Include="views\Admin.cshtml" />
     <None Include="views\Layout.cshtml" />
     <None Include="views\NewPromotion.cshtml" />
+    <None Include="views\NewPurchase.cshtml" />
+    <None Include="views\PurchaseDetail.cshtml" />
+    <None Include="views\PurchaseList.cshtml" />
     <None Include="views\PromotionList.cshtml" />
     <None Include="views\PromotionDetail.cshtml" />
     <None Include="views\ShowingList.cshtml" />
     <None Include="views\ShowingDetail.cshtml" />
     <None Include="views\MovieDetail.cshtml" />
     <None Include="views\NewShowing.cshtml" />
+    <None Include="views\SinglePurchase.cshtml" />
     <None Include="views\SinglePromotion.cshtml" />
     <None Include="views\SingleShowing.cshtml" />
     <None Include="views\SingleMovie.cshtml" />

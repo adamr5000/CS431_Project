@@ -1,0 +1,30 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<dynamic>
+@using System
+@using CS431_Project.Models
+@using Nancy.ViewEngines.Razor.HtmlHelpers
+
+@{
+    Layout = "Layout.cshtml";
+    ViewBag.Title = "Purchase #" + Model.PurchaseId;
+}
+
+<div>
+    <div>
+        @Model.PurchaseId
+    </div>
+    <div>
+        @Model.PurchaseTime
+    </div>
+    <div>
+        Movie: @Model.Movie.Title
+    </div>
+    <div>
+        Showing: @Model.Showing.Time
+    </div>
+    <div>
+        Customer: @Model.Customer .Name
+    </div>
+    <div>
+        Promotion: @Model.Promotion.PromotionName
+    </div>
+</div>

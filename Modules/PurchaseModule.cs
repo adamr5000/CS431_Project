@@ -1,8 +1,12 @@
-﻿using Anotar.NLog;
+﻿using System.Collections.Generic;
+using System.Dynamic;
+using System.Linq;
+using Anotar.NLog;
 using CS431_Project.Controllers;
 using CS431_Project.Models;
 using Nancy;
 using Nancy.ModelBinding;
+using Nancy.ViewEngines.Razor.HtmlHelpers;
 using ServiceStack.OrmLite;
 
 namespace CS431_Project.Modules
@@ -10,7 +14,7 @@ namespace CS431_Project.Modules
     public class PurchaseModule : NancyModule
     {
         public PurchaseModule(OrmLiteConnectionFactory db)
-            : base("/purchase[s]?")
+            : base("/purchases")
         {
             {
                 const string obj = "Purchase";
@@ -32,7 +36,22 @@ namespace CS431_Project.Modules
 
                 Get["/create"] = _ =>
                 {
-                    return View["New" + obj];
+                    var model = new
+                    {
+                        Movies = (new MovieController(db)).ListAll().Movies,
+                        Showings = (new ShowingsController(db)).ListAll(),
+                        Customers = new List<Customer>(),
+                        Promotions = (new PromotionController(db)).ListAll(),
+                    };
+                    
+                    var selects = new
+                    {
+                        Movies = model.Movies.Select(movie => new SelectListItem(movie.Title, movie.MovieId.ToString(), false)),
+                        Showings = model.Showings.Select(showing => new SelectListItem(showing.Time.ToString(), showing.ShowingId.ToString(), false)),
+                        Customers = model.Customers.Select(showing => new SelectListItem(showing.Name.ToString(), showing.CustomerId.ToString(), false)),
+                        Promotions = model.Promotions.Select(showing => new SelectListItem(showing.PromotionName.ToString(), showing.PromotionId.ToString(), false)),
+                    };
+                    return View["New" + obj, selects];
                 };
 
                 Post["/create"] = _ =>
