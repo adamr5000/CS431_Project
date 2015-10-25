@@ -48,7 +48,7 @@ namespace CS431_Project
                 LogTo.Debug("Adding showing: {0}", showing);
                 var showingsController = new ShowingsController(db);
                 var showingId = showingsController.Add(showing);
-                return Response.AsRedirect("/showings/" + showingId);
+                return Response.AsRedirect(ModulePath + "/" + showingId);
             };
 
             Post["/update/{id}"] = _ => { return 500; };

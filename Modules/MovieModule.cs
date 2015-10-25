@@ -33,7 +33,7 @@ namespace CS431_Project
                 var movie = this.Bind<Movie>(); // Binds the POST result to movie variable (as a movie object)
                 var movieController = new MovieController(db);
                 movieController.Add(movie);
-                return Response.AsRedirect("/movies/" + movie.GetPrettyTitleLink());
+                return Response.AsRedirect(ModulePath + "/" + movie.GetPrettyTitleLink());
             };
 
             Post["/update/{id}"] = _ => { return 500; };
